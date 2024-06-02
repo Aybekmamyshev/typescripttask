@@ -1,4 +1,5 @@
-const posts: IObject[] = [
+"use strict";
+const posts = [
     {
         id: '62e69d5a5458aac0ed320b35',
         title: 'id labore ex et quam laborum',
@@ -35,34 +36,20 @@ const posts: IObject[] = [
         body: 'maiores sed dolores similique labore et inventore etquasi temporibus esse sunt id eteos voluptatem aliquamratione corporis molestiae mollitia quia et magnam dolor'
     }
 ];
-
-interface IObject {
-    id: string,
-    title: string,
-    body: string
-}
-
-interface IPost {
-    byId: { [key: string]: IObject },
-    allIds: string[];
-}
-
-const normalizeData = (normalizedData: IObject[]): IPost => {
-    const byId: {[id:string]: IObject} = {}
-    const allIds: string[] = []
-
+const normalizeData = (normalizedData) => {
+    const byId = {};
+    const allIds = [];
     normalizedData.forEach((item) => {
         byId[item.id] = {
             id: item.body,
             title: item.title,
             body: item.body
-        }
-        allIds.push(item.id)
-    })
+        };
+        allIds.push(item.id);
+    });
     return {
         byId,
         allIds
-    }
-}
-
-console.log(normalizeData(posts))
+    };
+};
+console.log(normalizeData(posts));
